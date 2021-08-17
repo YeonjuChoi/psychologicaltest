@@ -5,13 +5,14 @@ import Status from '../components/Status'
 import QuestionItem from '../components/QuestionItem';
 import styled from 'styled-components';
 
-export default function Questions() {
-    const { page } = useParams();
-    const NavDiv = styled.div`
+const NavDiv = styled.div`
         display: flex;
         justify-content: space-between;
         width: 100%;
     `;
+
+export default function Questions() {
+    const { page } = useParams();
 
     return (
         <>
