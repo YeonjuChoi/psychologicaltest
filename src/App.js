@@ -1,9 +1,39 @@
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import Main from './components/Main';
-import Questions from './components/Questions';
-import Result from './components/Result';
+import Main from './pages/Main';
+import Questions from './pages/Questions';
+import Result from './pages/Result';
+import Sample from './pages/Sample';
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+
+const initialState = {
+  name: '',
+  gender: '',
+  questions: {}
+}
+
+const reducer = (state = initialState, action) => {
+  console.log('reducer called');
+  console.log(action);
+  switch (action.type) {
+    case "PROFILE_ACTION": {
+      return { name: action.name, gender: action.gender}
+    }
+    case 'SAVE_QUESTIONS': {
+      return {
+        ...state,
+        questions: action.payload,
+      }
+    }
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
+
 
 function App() {
   const MainDiv = styled.div`
@@ -19,23 +49,28 @@ function App() {
     flex-direction: column;
 `;
   return (
-    <div className="App">
-      <MainDiv>
-        <BrowserRouter>
-          <Switch>
-            <Route path='/' exact>
-              <Main />
-            </Route>
-            <Route path='/questions'>
-              <Questions />
-            </Route>
-            <Route path='/result' exact>
-              <Result />
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </MainDiv>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <MainDiv>
+          <BrowserRouter>
+            <Switch>
+              <Route path='/' exact>
+                <Main />
+              </Route>
+              <Route path='/sample' exact>
+                <Sample />
+              </Route>
+              <Route path='/questions/:page'>
+                <Questions />
+              </Route>
+              <Route path='/result' exact>
+                <Result />
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        </MainDiv>
+      </div>
+    </Provider>
   );
 }
 

@@ -1,3 +1,7 @@
 .App {
   height: 100vh;
+  word-break: keep-all;
+  display: flex;
+  align-items: center;
 }
+
