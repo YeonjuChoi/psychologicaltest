@@ -24,8 +24,10 @@ export default function Main() {
     };
     const handleClick = () => {
         console.log(name, gender);
-        dispatch({type: 'PROFILE_ACTION', name, gender});
-        history.push('/sample')
+        if (name && gender) {
+            dispatch({type: 'PROFILE_ACTION', name, gender});
+            history.push('/sample')
+        } 
     }
 
     const dispatch = useDispatch();
@@ -34,11 +36,11 @@ export default function Main() {
         <>
             <h1>직업 가치관 검사</h1>
             <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>이름</p>
-            <StyledInput name='name' type='text' onChange={onChange} value={inputs.name} />
+            <StyledInput name='name' type='text' onChange={onChange} value={inputs.name} required />
             <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>성별</p>
             <AnswerDiv name='gender' onChange={onChange} value={gender}>
                 <AnswerSection gender key='1'>
-                    <input type='radio' id='male' value='100323' name='gender' />
+                    <input type='radio' id='male' value='100323' name='gender' required />
                     <label htmlFor='male'>남성</label>
                 </AnswerSection>
                 <AnswerSection gender key='2'>
@@ -46,7 +48,7 @@ export default function Main() {
                     <label htmlFor='female'>여성</label>
                 </AnswerSection>
             </AnswerDiv>
-            <StyledButton onClick={handleClick}>제출</StyledButton>
+            <StyledButton status={name!=='' && gender!==''} onClick={handleClick}>제출</StyledButton>
         </>
     )
 }

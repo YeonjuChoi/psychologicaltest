@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 Status.defaultProps = {
     type: '검사 예시',
-    percent: 10
+    percent: 0
 }
 
 const TopInfo = styled.div`

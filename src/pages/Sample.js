@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { AnswerDiv, AnswerSection, QuestionDiv, QuestionSection } from '../components/Styled';
+import { AnswerDiv, AnswerSection, QuestionDiv, QuestionSection, StyledButton } from '../components/Styled';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 import QuestionItem from '../components/QuestionItem';
 import Status from '../components/Status';
 
@@ -10,6 +10,9 @@ import Status from '../components/Status';
 
 export default function Sample() {
     const dispatch = useDispatch();
+    const history = useHistory();
+    const sampleAnswer = useSelector((state)=>state.sample[1])
+    console.log(sampleAnswer)
     useEffect(()=> {
         fetch();
     }, []);
@@ -19,10 +22,14 @@ export default function Sample() {
         const actionObject = {type: 'SAVE_QUESTIONS', payload: response.data.RESULT};
         dispatch(actionObject);
     }
+    const onClick = () => {
+        history.push('/questions/1')
+    }
     return (
         <>
             <Status />
-            <QuestionItem />
+            <QuestionItem isSample='true' />
+            <StyledButton status={sampleAnswer!==undefined} onClick={onClick}>검사 진행하기</StyledButton>
         </>
     )
 }

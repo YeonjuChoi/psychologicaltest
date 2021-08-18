@@ -97,7 +97,7 @@ export const StyledInput = styled.input`
     `;
 
 export const StyledButton = styled.button`
-    background-color: lightsalmon;
+    background-color: ${props => props.status === false ? 'lightgrey':'lightsalmon'};
     width: 300px;
     height: 70px;
     border-radius: 15px;
@@ -108,5 +108,5 @@ export const StyledButton = styled.button`
     font-weight: bold;
     font-size: 1.2rem;
     margin-top: 40px;
-    cursor: pointer;
+    cursor: ${props => props.status === false? 'inherit': 'pointer'};
 `;

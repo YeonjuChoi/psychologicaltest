@@ -11,12 +11,14 @@ import { Provider } from 'react-redux';
 const initialState = {
   name: '',
   gender: '',
-  questions: {}
+  questions: {},
+  sample: {},
+  answers: {}
 }
 
 const reducer = (state = initialState, action) => {
-  console.log('reducer called');
   console.log(action);
+  console.log(state);
   switch (action.type) {
     case "PROFILE_ACTION": {
       return { name: action.name, gender: action.gender}
@@ -25,6 +27,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         questions: action.payload,
+      }
+    }
+    case 'SAMPLE_INPUT': {
+      return {
+        ...state,
+        sample: {[action.id]: action.answer}
+      }
+    }
+    case 'ANSWER_INPUTS': {
+      return {
+        ...state,
+        answers: {[action.id]: action.answer}
       }
     }
     default:
