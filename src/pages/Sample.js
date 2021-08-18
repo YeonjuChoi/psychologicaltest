@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { AnswerDiv, AnswerSection, QuestionDiv, QuestionSection, StyledButton } from '../components/Styled';
+import React, { useEffect } from 'react'
+import { StyledButton } from '../components/Styled';
 import axios from 'axios';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import QuestionItem from '../components/QuestionItem';
 import Status from '../components/Status';
@@ -15,7 +15,7 @@ export default function Sample() {
     const sample = sampleAnswer || {};
     useEffect(()=> {
         fetch();
-    }, []);
+    });
     const fetch = async () => {
         const response = await axios.get('https://www.career.go.kr/inspct/openapi/test/questions?apikey=ca115d14dfa918dd56d9172eb0aac33c&q=6');
         const actionObject = {type: 'SAVE_QUESTIONS', payload: response.data.RESULT};
@@ -30,7 +30,7 @@ export default function Sample() {
         <>
             <Status />
             <QuestionItem isSample={true} inputValue={sample[1]} />
-            <StyledButton status={true} onClick={onClick}>검사 진행하기</StyledButton>
+            <StyledButton status={sample[1]} onClick={onClick}>검사 진행하기</StyledButton>
         </>
     )
 }

@@ -46,9 +46,7 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 
-
-function App() {
-  const MainDiv = styled.div`
+const MainDiv = styled.div`
     background-color: #FDF6F0;
     max-width: 780px;
     text-align: center;
@@ -60,6 +58,9 @@ function App() {
     align-items: center;
     flex-direction: column;
 `;
+
+function App() {
+  
   return (
     <Provider store={store}>
       <div className="App">

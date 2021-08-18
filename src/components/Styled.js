@@ -1,9 +1,9 @@
-import styled, {css, keyframes} from 'styled-components';
+import styled, { keyframes} from 'styled-components';
 
-export const QuestionDiv = styled.div`
+export const QuestionContainer = styled.div`
     background-color: white;
     max-width: 620px;
-    min-height: 150px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -12,9 +12,9 @@ export const QuestionDiv = styled.div`
     margin-top: 20px;
 `;
 
-export const QuestionSection = styled.div`
+export const QuestionSection = styled.section`
     max-width: 620px;
-    min-height: 60px;
+    min-height: 30px;
     background-color: lightsalmon;
     color: white;
     display: flex;
@@ -23,9 +23,9 @@ export const QuestionSection = styled.div`
     padding: 10px;
 `;
 
-export const AnswerDiv = styled.div`
+export const AnswerSection = styled.section`
     max-width: 620px;
-    min-height: 80px;
+    min-height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -39,7 +39,7 @@ export const fadeIn = keyframes`
         opacity: 1
     }
 `;
-const fadeOut = keyframes`
+export const fadeOut = keyframes`
     from {
         opacity: 1
     }
@@ -48,24 +48,29 @@ const fadeOut = keyframes`
     }
 `;
 
-export const AnswerSection = styled.div`
+export const AnswerOption = styled.div`
     width: 300px;
     height: 70px;
     margin: 5px;
     border-radius: 15px;
     overflow: auto;
     
-    input[type=radio] {
-        display: none;
-        align-content:center;
+    div {
+        height: 20px;
+        font-size: 0.6rem;
+        line-height: 20px;
     }
+`;
+export const StyledRadioInput = styled.input`
+    display: none;
+    align-content: center;
 
-    input[type=radio]+label {
+    & + label {
         display: inline-block;
         cursor: pointer;
         width: 300px;
-        height: 70px;
-        line-height: ${props=> props.gender ? '70px' :'40px' };
+        height: ${props=>props.gender ? '100%':'70px'};
+        line-height: ${(props) => (props.gender ? "70px" : "40px")};
         font-weight: bold;
         background-color: white;
         color: salmon;
@@ -73,17 +78,13 @@ export const AnswerSection = styled.div`
         border-radius: 15px;
         box-sizing: border-box;
     }
-    input[type=radio]:checked+label {
+
+    &:checked + label {
         background-color: lightsalmon;
         color: white;
-        
-    }
-    div {
-        height: 20px;
-        font-size: 0.6rem;
-        line-height: 20px;
     }
 `;
+
 
 export const StyledInput = styled.input`
         border: 3px solid lightsalmon;
@@ -98,7 +99,7 @@ export const StyledInput = styled.input`
     `;
 
 export const StyledButton = styled.button`
-    background-color: ${props => props.status === false ? 'lightgrey':'lightsalmon'};
+    background-color: ${props => props.status ? 'lightsalmon':'lightgrey'};
     width: ${props => props.sm ? '100px':'300px'};
     height: ${props => props.sm ? '50px':'70px'};
     border-radius: 15px;
@@ -108,6 +109,6 @@ export const StyledButton = styled.button`
     color: white;
     font-weight: bold;
     font-size: 1.2rem;
-    margin-top: 40px;
-    cursor: ${props => props.status === false? 'inherit': 'pointer'};
+    margin-top: ${props=> props.sm ? '15px':'30px'};
+    cursor: ${props => props.status ? 'pointer': 'inherit'};
 `;

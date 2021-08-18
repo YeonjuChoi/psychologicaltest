@@ -1,6 +1,6 @@
 import React from 'react';
-import { AnswerDiv, AnswerSection, QuestionDiv, QuestionSection } from '../components/Styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { AnswerSection, AnswerOption, QuestionContainer, QuestionSection, StyledRadioInput } from '../components/Styled';
+import { useDispatch } from 'react-redux';
 
 QuestionItem.defaultProps = {
     item: {
@@ -22,20 +22,20 @@ export default function QuestionItem({item, isSample=false, inputValue}) {
         dispatch({type: pageType, id: item.qitemNo, answer: e.target.value})
     };
     return (
-        <QuestionDiv>
+        <QuestionContainer>
             <QuestionSection>
                 {item.question}
             </QuestionSection>
-            <AnswerDiv>
-                <AnswerSection key={item.answerScore01}>
-                    <input type='radio' id={item.answerScore01} value={item.answerScore01} name={`question-${item.qitemNo}`} onClick={onClick} defaultChecked={item.answerScore01===(inputValue)} />
+            <AnswerSection>
+                <AnswerOption key={item.answerScore01}>
+                    <StyledRadioInput type='radio' id={item.answerScore01} value={item.answerScore01} name={`question-${item.qitemNo}`} onClick={onClick} defaultChecked={item.answerScore01===(inputValue)} />
                     <label htmlFor={item.answerScore01}>{item.answer01}<div>{item.answer03}</div></label>
-                </AnswerSection>
-                <AnswerSection key={item.answerScore02}>
-                    <input type='radio' id={item.answerScore02} value={item.answerScore02} name={`question-${item.qitemNo}`} onClick={onClick} defaultChecked={item.answerScore02===(inputValue)} />
+                </AnswerOption>
+                <AnswerOption key={item.answerScore02}>
+                    <StyledRadioInput type='radio' id={item.answerScore02} value={item.answerScore02} name={`question-${item.qitemNo}`} onClick={onClick} defaultChecked={item.answerScore02===(inputValue)} />
                     <label htmlFor={item.answerScore02}>{item.answer02}<div>{item.answer04}</div></label>
-                </AnswerSection>
-            </AnswerDiv>
-        </QuestionDiv>
+                </AnswerOption>
+            </AnswerSection>
+        </QuestionContainer>
     )
 }

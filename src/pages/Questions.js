@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyledButton } from '../components/Styled';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Status from '../components/Status'
 import QuestionItem from '../components/QuestionItem';
 import styled from 'styled-components';
@@ -46,9 +46,8 @@ export default function Questions() {
         <>
             <Status type='검사 진행' percent={parseInt(answersCount*100/questionLength)} />
             {loadingList.map((item)=><QuestionItem key={`questionBox-${item.qitemNo}`} item={item} inputValue={answer[item.qitemNo]}  />)}
-            검사페이지 {page}
             <NavDiv>
-                <StyledButton onClick={onClickPrev} sm>이전</StyledButton>
+                <StyledButton onClick={onClickPrev} sm status>이전</StyledButton>
                 <StyledButton onClick={onClickNext} sm status={answersCount>=endNum} >다음</StyledButton>
             </NavDiv>
         </>

@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
-import { AnswerDiv, AnswerSection, StyledInput, StyledButton } from '../components/Styled';
-import { Link, useHistory } from 'react-router-dom';
+import { AnswerSection, AnswerOption, StyledInput, StyledButton, StyledRadioInput } from '../components/Styled';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 export default function Main() {
     
-
-
     const [inputs, setInputs] = useState({
         name: '',
         gender: ''
@@ -23,7 +20,6 @@ export default function Main() {
         });
     };
     const handleClick = () => {
-        console.log(name, gender);
         if (name && gender) {
             dispatch({type: 'PROFILE_ACTION', name, gender});
             history.push('/sample')
@@ -38,16 +34,16 @@ export default function Main() {
             <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>이름</p>
             <StyledInput name='name' type='text' onChange={onChange} value={inputs.name} required />
             <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>성별</p>
-            <AnswerDiv name='gender' onChange={onChange} value={gender}>
-                <AnswerSection gender key='1'>
-                    <input type='radio' id='male' value='100323' name='gender' required />
+            <AnswerSection name='gender' onChange={onChange} value={gender}>
+                <AnswerOption gender key='1'>
+                    <StyledRadioInput type='radio' id='male' gender value='100323' name='gender' required />
                     <label htmlFor='male'>남성</label>
-                </AnswerSection>
-                <AnswerSection gender key='2'>
-                    <input type='radio' id='female' value='100324' name='gender' />
+                </AnswerOption>
+                <AnswerOption gender key='2'>
+                    <StyledRadioInput type='radio' id='female' gender value='100324' name='gender' />
                     <label htmlFor='female'>여성</label>
-                </AnswerSection>
-            </AnswerDiv>
+                </AnswerOption>
+            </AnswerSection>
             <StyledButton status={name!=='' && gender!==''} onClick={handleClick}>제출</StyledButton>
         </>
     )
