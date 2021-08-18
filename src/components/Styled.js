@@ -9,6 +9,7 @@ export const QuestionDiv = styled.div`
     align-content: space-between;
     border-radius: 15px;
     overflow: auto;
+    margin-top: 20px;
 `;
 
 export const QuestionSection = styled.div`
@@ -98,8 +99,8 @@ export const StyledInput = styled.input`
 
 export const StyledButton = styled.button`
     background-color: ${props => props.status === false ? 'lightgrey':'lightsalmon'};
-    width: 300px;
-    height: 70px;
+    width: ${props => props.sm ? '100px':'300px'};
+    height: ${props => props.sm ? '50px':'70px'};
     border-radius: 15px;
     border: 0px;
     margin-top: 20px;

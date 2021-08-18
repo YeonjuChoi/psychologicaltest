@@ -3,39 +3,37 @@ import { AnswerDiv, AnswerSection, QuestionDiv, QuestionSection } from '../compo
 import { useDispatch, useSelector } from 'react-redux';
 
 QuestionItem.defaultProps = {
-    qitemNo: 1,
-    question: '두 개 가치 중에 자신에게 더 중요한 가치를 선택하세요.',
-    answer01: "능력발휘",
-    answer02: "자율성",
-    answer03: "직업을 통해 자신의 능력을 발휘하는 것입니다.",
-    answer04: "일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다.",
-    answerScore01: '1',
-    answerScore02: '2',
+    item: {
+        qitemNo: 1,
+        question: '두 개 가치 중에 자신에게 더 중요한 가치를 선택하세요.',
+        answer01: "능력발휘",
+        answer02: "자율성",
+        answer03: "직업을 통해 자신의 능력을 발휘하는 것입니다.",
+        answer04: "일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다.",
+        answerScore01: '1',
+        answerScore02: '2'},
     isSample: false
 }
-export default function QuestionItem({question, answer01, answer02, answer03, answer04, answerScore01, answerScore02, qitemNo, isSample}) {
+export default function QuestionItem({item, isSample=false, inputValue}) {
     const dispatch = useDispatch();
-    const inputValue = useSelector((state)=>
-    {if(!isSample) {
-        return state.answers[qitemNo]
-    } else {return state.sample[qitemNo]}})
+    
     const pageType = isSample ? "SAMPLE_INPUT":"ANSWER_INPUTS"
     const onClick = (e) => {
-        dispatch({type: pageType, id: qitemNo, answer: e.target.value})
+        dispatch({type: pageType, id: item.qitemNo, answer: e.target.value})
     };
     return (
         <QuestionDiv>
             <QuestionSection>
-                {question}
+                {item.question}
             </QuestionSection>
             <AnswerDiv>
-                <AnswerSection key={answerScore01}>
-                    <input type='radio' id={answerScore01} value={answerScore01} name={`question-${qitemNo}`} onClick={onClick} defaultChecked={answerScore01===(inputValue)} />
-                    <label htmlFor={answerScore01}>{answer01}<div>{answer03}</div></label>
+                <AnswerSection key={item.answerScore01}>
+                    <input type='radio' id={item.answerScore01} value={item.answerScore01} name={`question-${item.qitemNo}`} onClick={onClick} defaultChecked={item.answerScore01===(inputValue)} />
+                    <label htmlFor={item.answerScore01}>{item.answer01}<div>{item.answer03}</div></label>
                 </AnswerSection>
-                <AnswerSection key={answerScore02}>
-                    <input type='radio' id={answerScore02} value={answerScore02} name={`question-${qitemNo}`} onClick={onClick} defaultChecked={answerScore02===(inputValue)} />
-                    <label htmlFor={answerScore02}>{answer02}<div>{answer04}</div></label>
+                <AnswerSection key={item.answerScore02}>
+                    <input type='radio' id={item.answerScore02} value={item.answerScore02} name={`question-${item.qitemNo}`} onClick={onClick} defaultChecked={item.answerScore02===(inputValue)} />
+                    <label htmlFor={item.answerScore02}>{item.answer02}<div>{item.answer04}</div></label>
                 </AnswerSection>
             </AnswerDiv>
         </QuestionDiv>
