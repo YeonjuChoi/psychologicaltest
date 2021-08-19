@@ -28,7 +28,9 @@ export default function Sample() {
     }
     return (
         <>
-            <Status />
+            <div style={{width:'100%'}}>
+                <Status />
+            </div>
             <QuestionItem isSample={true} inputValue={sample[1]} />
             <StyledButton status={sample[1]} onClick={onClick}>검사 진행하기</StyledButton>
         </>

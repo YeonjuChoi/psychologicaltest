@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyledButton } from '../components/Styled';
 import { useParams, useHistory } from 'react-router-dom';
 import Status from '../components/Status'
@@ -14,14 +14,15 @@ const NavDiv = styled.div`
 
 export default function Questions() {
     const { page } = useParams();
-    const questionsObj = useSelector((state)=>state.questions)
-    const questions = questionsObj || {};
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [page])
+    const questions = useSelector((state)=>state.questions)
     const questionLength = questions.length;
     const startNum = 5*(page-1);
     const endNum = 5*page > questionLength ? questionLength : 5*page
     const loadingList = questions.slice(startNum, endNum);
-    const answerObj = useSelector((state)=>state.answers);
-    const answer = answerObj || {};
+    const answer = useSelector((state)=>state.answers);
     const answersCount = Object.keys(answer).length;
     const history = useHistory();
     const onClickPrev = () => {

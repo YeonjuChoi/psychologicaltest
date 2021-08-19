@@ -7,19 +7,23 @@ import Result from './pages/Result';
 import Sample from './pages/Sample';
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
+import ResultDetail from './pages/ResultDetail';
 
 const initialState = {
   name: '',
   gender: '',
-  questions: {},
+  questions: [],
   sample: {},
-  answers: {}
+  answers: {},
+  result: ''
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "PROFILE_ACTION": {
-      return { name: action.name, gender: action.gender}
+      return { 
+        ...state,
+        name: action.name, gender: action.gender}
     }
     case 'SAVE_QUESTIONS': {
       return {
@@ -39,6 +43,12 @@ const reducer = (state = initialState, action) => {
         answers: {...state.answers, [action.id]: action.answer}
       }
     }
+    case 'RESULT_INPUT': {
+      return {
+        ...state,
+        result: action.result,
+      }
+    }
     default:
       return state;
   }
@@ -48,15 +58,17 @@ const store = createStore(reducer);
 
 const MainDiv = styled.div`
     background-color: #FDF6F0;
-    max-width: 780px;
+    max-width: 700px;
+    min-width: 300px;
     text-align: center;
-    min-height: 900px;
+    min-height: 50vh;
     border-radius: 30px;
     margin: auto;
     padding: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
 `;
 
 function App() {
@@ -78,6 +90,9 @@ function App() {
               </Route>
               <Route path='/result' exact>
                 <Result />
+              </Route>
+              <Route path='/resultdetail' exact>
+                <ResultDetail />
               </Route>
             </Switch>
           </BrowserRouter>

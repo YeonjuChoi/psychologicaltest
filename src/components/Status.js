@@ -26,6 +26,7 @@ const Progress = styled.div`
     height: 100%;
     background-color: lightsalmon;
     border-radius: 10px;
+    transition: all 0.2s linear;
 `;
 
 export default function Status({type, percent}) {
