@@ -1,8 +1,9 @@
+/* eslint-disable no-plusplus */
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { StyledButton } from '../components/Styled';
 import { useHistory } from 'react-router-dom';
+import { StyledButton } from '../components/Styled';
 
 export default function Result() {
     useEffect(() => {
@@ -39,7 +40,6 @@ export default function Result() {
         })
         const resId = response.data.RESULT.url.split('=')[1];
         dispatch({type: 'RESULT_INPUT', result: resId})
-        console.log(response.data.RESULT.url)
 
 
     }

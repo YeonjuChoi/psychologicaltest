@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import { StyledButton } from '../components/Styled';
 import { useParams, useHistory } from 'react-router-dom';
-import Status from '../components/Status'
-import QuestionItem from '../components/QuestionItem';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
+import { StyledButton } from '../components/Styled';
+import Status from '../components/Status'
+import QuestionItem from '../components/QuestionItem';
 
 const NavDiv = styled.div`
         display: flex;
@@ -29,7 +29,7 @@ export default function Questions() {
         if (page==='1'){
             history.push('/sample');
         } else {
-            history.push(`/questions/${parseInt(page)-1}`)
+            history.push(`/questions/${Number(page)-1}`)
         }
     };
     const onClickNext = () => {
@@ -37,7 +37,7 @@ export default function Questions() {
             if (endNum === questionLength) {
                 history.push('/result')
             } else{
-                history.push(`/questions/${parseInt(page)+1}`)
+                history.push(`/questions/${Number(page)+1}`)
             }
         }
     }

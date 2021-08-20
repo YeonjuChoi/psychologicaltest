@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { StyledButton } from '../components/Styled';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import { StyledButton } from '../components/Styled';
 import QuestionItem from '../components/QuestionItem';
 import Status from '../components/Status';
 
@@ -31,7 +31,7 @@ export default function Sample() {
             <div style={{width:'100%'}}>
                 <Status />
             </div>
-            <QuestionItem isSample={true} inputValue={sample[1]} />
+            <QuestionItem isSample inputValue={sample[1]} />
             <StyledButton status={sample[1]} onClick={onClick}>검사 진행하기</StyledButton>
         </>
     )

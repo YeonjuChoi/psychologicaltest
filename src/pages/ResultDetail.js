@@ -28,30 +28,29 @@ export default function ResultDetail() {
 
     useEffect(()=>{
         finalResult(resId);
-    },[]);
+    },[resId]);
     useEffect(()=> {
         jobAndMajor(top2);
     }, [top2])
 
+    
 
-    const finalResult = async (resId) => {
-        const semiResult = await axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${resId}`);
+
+    const finalResult = async (seqId) => {
+        const semiResult = await axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${seqId}`);
         const score = semiResult.data.result.wonScore.slice(0,-1).split(' ').map((item)=>item.split('='));
         setOriginalRes(score.slice());
-        score.sort(function(a,b){
-            return b[1] - a[1]
-        })
+        score.sort((a,b)=> b[1] - a[1])
         const res = score;
         setTop2([res[0][0], res[1][0]]);
         setLow2([res[6][0], res[7][0]])
     }
 
 
-    const jobAndMajor = async (top2) => {
-        console.log(top2)
-        const jobRes = await axios.get(`https://www.career.go.kr/inspct/api/psycho/value/jobs?no1=${top2[0]}&no2=${top2[1]}`);
+    const jobAndMajor = async (tops) => {
+        const jobRes = await axios.get(`https://www.career.go.kr/inspct/api/psycho/value/jobs?no1=${tops[0]}&no2=${top2[1]}`);
         setJob(jobRes.data);
-        const majorRes = await axios.get(`https://www.career.go.kr/inspct/api/psycho/value/majors?no1=${top2[0]}&no2=${top2[1]}`);
+        const majorRes = await axios.get(`https://www.career.go.kr/inspct/api/psycho/value/majors?no1=${tops[0]}&no2=${top2[1]}`);
         setMajor(majorRes.data);
         console.log(job);
         console.log(major)

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { AnswerSection, AnswerOption, StyledInput, StyledButton, StyledRadioInput } from '../components/Styled';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { AnswerSection, AnswerOption, StyledInput, StyledButton, StyledRadioInput } from '../components/Styled';
 
 export default function Main() {
     
@@ -13,10 +13,9 @@ export default function Main() {
     const {name, gender} = inputs;
 
     const onChange = (e) => {
-        const {name, value} = e.target;
         setInputs({
             ...inputs,
-            [name]: value,
+            [e.target.name]: e.target.value,
         });
     };
     const handleClick = () => {
