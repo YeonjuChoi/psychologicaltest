@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AnswerSection, AnswerOption, StyledInput, StyledButton, StyledRadioInput } from '../components/Styled';
+import RadioItem from '../components/RadioItem';
 
 export default function Main() {
     
@@ -17,6 +18,7 @@ export default function Main() {
             ...inputs,
             [e.target.name]: e.target.value,
         });
+        console.log(name, gender)
     };
     const handleClick = () => {
         if (name && gender) {
@@ -34,16 +36,7 @@ export default function Main() {
                 <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>이름</p>
                 <StyledInput name='name' type='text' onChange={onChange} value={inputs.name} required />
                 <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>성별</p>
-                <AnswerSection name='gender' onChange={onChange} value={gender}>
-                    <AnswerOption gender key='1'>
-                        <StyledRadioInput type='radio' id='male' gender value='100323' name='gender' required />
-                        <label htmlFor='male'>남성</label>
-                    </AnswerOption>
-                    <AnswerOption gender key='2'>
-                        <StyledRadioInput type='radio' id='female' gender value='100324' name='gender' />
-                        <label htmlFor='female'>여성</label>
-                    </AnswerOption>
-                </AnswerSection>
+                <RadioItem item={[{name:'gender', score:'100323', answer:'남성', additionalInfo:null},{name:'gender', score:'100324', answer:'여성', additionalInfo:null}]} onClick={onChange} isGender />
             </div>
             <StyledButton status={name!=='' && gender!==''} onClick={handleClick}>제출</StyledButton>
         </>

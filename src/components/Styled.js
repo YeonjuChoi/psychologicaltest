@@ -79,6 +79,10 @@ export const StyledRadioInput = styled.input`
         border: 3px solid lightsalmon;
         border-radius: 15px;
         box-sizing: border-box;
+
+        div {
+            display: ${props=>props.gender ? 'none':'block'}
+        }
     }
 
     &:checked + label {
