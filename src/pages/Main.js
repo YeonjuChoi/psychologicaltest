@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { StyledInput, StyledButton } from '../components/Styled';
+import { StyledInput, StyledButton, Title } from '../components/Styled';
 import RadioItem from '../components/RadioItem';
 
 export default function Main() {
@@ -43,8 +43,3 @@ export default function Main() {
     )
 }
 
-const Title = styled.p`
-    font-size: 1.5rem;
-    color: salmon;
-    font-weight: bold
-`;

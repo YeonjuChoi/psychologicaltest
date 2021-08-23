@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { StyledButton } from '../components/Styled';
+import { StyledButton, Title } from '../components/Styled';
 
 export default function Result() {
     useEffect(() => {
@@ -49,11 +49,6 @@ export default function Result() {
         </>
     )
 }
-
-
-const Title = styled.h2`
-    color: salmon;
-`;
 
 const Description = styled.p`
     font-size: 1.2rem;

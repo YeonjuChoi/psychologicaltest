@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import { StyledButton } from '../components/Styled';
-import Status, { MemoizedStatus } from '../components/Status'
+import { MemoizedStatus } from '../components/Status'
 import { MemoizedQuestionItem } from '../components/QuestionItem';
 
 const NavDiv = styled.div`

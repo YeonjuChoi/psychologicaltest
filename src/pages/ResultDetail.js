@@ -32,6 +32,7 @@ export default function ResultDetail() {
 
     useEffect(() => {
         finalResult(resId);
+        window.scrollTo(0,0)
     }, [resId]);
 
     const finalResult = async (seqId) => {

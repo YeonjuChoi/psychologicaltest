@@ -9,7 +9,6 @@ import Sample from './pages/Sample';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import ResultDetail from './pages/ResultDetail';
-import Table from './components/Table';
 
 const initialState = {
   name: '',
@@ -73,7 +72,7 @@ const MainDiv = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-
+  color: dimgrey
 `;
 
 
@@ -98,9 +97,6 @@ function App() {
               </Route>
               <Route path="/resultdetail" exact>
                 <ResultDetail />
-              </Route>
-              <Route path='/table'>
-                <Table />
               </Route>
             </Switch>
           </BrowserRouter>
