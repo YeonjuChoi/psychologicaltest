@@ -3,8 +3,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import { StyledButton } from '../components/Styled';
-import Status from '../components/Status'
-import QuestionItem from '../components/QuestionItem';
+import Status, { MemoizedStatus } from '../components/Status'
+import { MemoizedQuestionItem } from '../components/QuestionItem';
 
 const NavDiv = styled.div`
         display: flex;
@@ -50,8 +50,8 @@ export default function Questions() {
 
     return (
         <>
-            <Status type='검사 진행' percent={parseInt(answersCount*100/questionLength)} />
-            {loadingList.map((item)=><QuestionItem key={`questionBox-${item.qitemNo}`} item={item} inputValue={answer[item.qitemNo]}  />)}
+            <MemoizedStatus type='검사 진행' percent={parseInt(answersCount*100/questionLength)} />
+            {loadingList.map((item)=><MemoizedQuestionItem key={`questionBox-${item.qitemNo}`} item={item} inputValue={answer[item.qitemNo]}  />)}
             <NavDiv>
                 <StyledButton onClick={onClickPrev} sm status>이전</StyledButton>
                 <StyledButton onClick={onClickNext} sm status={answersCount>=endNum} >다음</StyledButton>

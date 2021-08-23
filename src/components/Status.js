@@ -44,3 +44,5 @@ export default function Status({type, percent}) {
         </>
     )
 }
+
+export const MemoizedStatus = React.memo(Status)

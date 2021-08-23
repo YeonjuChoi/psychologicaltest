@@ -122,3 +122,8 @@ export const StyledButton = styled.button`
     transition: all 0.4s ease;
 `;
 
+export const Title = styled.h2`
+    color: salmon;
+    font-weight: bold;
+    margin-top: 40px;
+`;

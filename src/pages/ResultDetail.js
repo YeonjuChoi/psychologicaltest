@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Table, { StyledTable } from '../components/Table';
-import { StyledButton } from '../components/Styled';
+import { StyledButton, Title } from '../components/Styled';
 import BarChart from '../components/BarChart';
 
 export default function ResultDetail() {
@@ -96,7 +96,7 @@ export default function ResultDetail() {
             </IntroMessage>
 
             <div>
-                <h2>직업 가치관 결과</h2>
+                <Title>직업 가치관 결과</Title>
                 <BarChart label={Object.values(resItems)} score={originalRes} />
             </div>
             <div>

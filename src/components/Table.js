@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Title } from './Styled';
 
 export default function Table( { title, res }) {
     const edu = ['','중졸이하', '고졸', '전문대졸', '대졸', '대학원졸'];
@@ -89,10 +90,6 @@ const JobItems = styled.span`
     padding: 2px;
 `;
 
-const Title = styled.h2`
-    font-weight: bold;
-    margin-top: 40px;
-`;
 
 
 

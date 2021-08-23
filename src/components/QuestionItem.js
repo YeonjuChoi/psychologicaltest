@@ -34,3 +34,5 @@ QuestionItem.defaultProps = {
     },
     isSample: false,
 };
+
+export const MemoizedQuestionItem = React.memo(QuestionItem)
