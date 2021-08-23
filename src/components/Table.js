@@ -32,7 +32,7 @@ export default function Table( { title, res }) {
                 종사자 평균 {title}별
             </Title>
             <StyledTable key={`${title}-table`}>
-                <thead>
+                <thead key={`thead-${title}`}>
                     <tr>
                     {titles.map((item) => (
                         <td key={`table-data-${item}`} className='types'>
