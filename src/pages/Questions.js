@@ -14,17 +14,22 @@ const NavDiv = styled.div`
 
 export default function Questions() {
     const { page } = useParams();
+    const history = useHistory();
+
     useEffect(() => {
         window.scrollTo(0,0);
     }, [page])
+
     const questions = useSelector((state)=>state.questions)
     const questionLength = questions.length;
+
     const startNum = 5*(page-1);
     const endNum = 5*page > questionLength ? questionLength : 5*page
     const loadingList = questions.slice(startNum, endNum);
+
     const answer = useSelector((state)=>state.answers);
     const answersCount = Object.keys(answer).length;
-    const history = useHistory();
+
     const onClickPrev = () => {
         if (page==='1'){
             history.push('/sample');
@@ -32,6 +37,7 @@ export default function Questions() {
             history.push(`/questions/${Number(page)-1}`)
         }
     };
+    
     const onClickNext = () => {
         if(answersCount >= endNum){
             if (endNum === questionLength) {

@@ -121,3 +121,7 @@ export const StyledButton = styled.button`
     cursor: ${props => props.status ? 'pointer': 'inherit'};
     transition: all 0.4s ease;
 `;
+
+export const Title = styled.h2`
+    font-weight: bold;
+`;

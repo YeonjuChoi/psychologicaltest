@@ -18,7 +18,6 @@ export default function Main() {
             ...inputs,
             [e.target.name]: e.target.value,
         });
-        console.log(name, gender)
     };
     const handleClick = () => {
         if (name && gender) {
