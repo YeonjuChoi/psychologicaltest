@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Table, { StyledTable } from '../components/Table';
+import { StyledButton } from '../components/Styled';
+import BarChart from '../components/BarChart';
 
 export default function ResultDetail() {
     const { name, gender, resId } = useSelector((state) => ({
@@ -9,6 +12,7 @@ export default function ResultDetail() {
         gender: state.gender,
         resId: state.result,
     }));
+
     const resItems = {
         1: '능력발휘',
         2: '자율성',
@@ -39,63 +43,77 @@ export default function ResultDetail() {
             .split(' ')
             .map((item) => item.split('='));
         setOriginalRes(score.slice());
+
         score.sort((a, b) => b[1] - a[1]);
         const res = score;
-        const res1 = res[0][0]
-        const res2 = res[1][0]
-        setTop2(res1, res2);
+        const res1 = res[0][0];
+        const res2 = res[1][0];
+
+        setTop2([res1, res2]);
         setLow2([res[6][0], res[7][0]]);
 
         const jobRes = await axios.get(
             `https://www.career.go.kr/inspct/api/psycho/value/jobs?no1=${res1}&no2=${res2}`,
         );
         setJob(jobRes.data);
+
         const majorRes = await axios.get(
             `https://www.career.go.kr/inspct/api/psycho/value/majors?no1=${res1}&no2=${res2}`,
         );
         setMajor(majorRes.data);
-
     };
+
     const today = new Date();
     const dateString = today.toLocaleDateString('ko-KR', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
-    })
+        day: 'numeric',
+    });
 
     return (
         <div>
             <h1>상세결과 페이지</h1>
-            <StyledTable>
+            <StyledTable simple>
                 <thead>
                     <tr>
-                        <td>이름</td>
-                        <td>성별</td>
-                        <td>검사일</td>
+                        <td className="types">이름</td>
+                        <td className="types">성별</td>
+                        <td className="types">검사일</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{name}</td>
-                        <td>{gender==='100323'?'남':'여'}</td>
+                        <td>{gender === '100323' ? '남' : '여'}</td>
                         <td>{dateString}</td>
                     </tr>
                 </tbody>
             </StyledTable>
+            <IntroMessage>
+                직업생활 관련하여 {name}님은 {resItems[top2[0]]}, {resItems[top2[1]]}{['1','3','6'].includes(top2[1]) ?'를' : '을'} 가장 중요하게 생각합니다. <br />
+                반면에 {resItems[low2[0]]}, {resItems[low2[1]]}{['1','3','6'].includes(low2[1]) ?'는' : '은'} 상대적으로
+                덜 중요하게 생각합니다.
+            </IntroMessage>
+
             <div>
                 <h2>직업 가치관 결과</h2>
-                <div style={{width:'400px', height:'300px',display:'block',margin:'auto'}}>
-                    그래프 자리
-                </div>
+                <BarChart label={Object.values(resItems)} score={originalRes} />
             </div>
             <div>
-                {top2.length && (
+                {job && major && (
                     <div>
-                        <Table title='학력' res={job} />
-                        <Table title='전공' res={major} />
+                        <Table title="학력" res={job} />
+                        <Table title="전공" res={major} />
                     </div>
                 )}
             </div>
+            <a href="/">
+                <StyledButton status>다시 검사하기</StyledButton>
+            </a>
         </div>
     );
 }
+
+const IntroMessage = styled.div`
+    margin-top: 20px;
+`;

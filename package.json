@@ -8,10 +8,12 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "5.0.2",
+    "chart.js": "^3.5.1",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.4",
+    "react-chartjs-2": "^3.0.4",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
@@ -40,13 +42,13 @@
       "react/jsx-one-expression-per-line": 0,
       "react/react-in-jsx-scope": 0,
       "semi": 0,
-      "react/prop-types":0,
+      "react/prop-types": 0,
       "no-unused-vars": 0,
       "no-use-before-define": 0,
       "jsx-a11y/label-has-associated-control": 0,
       "radix": 0,
       "no-plusplus": 0,
-      "prefer-arrow-callback":0
+      "prefer-arrow-callback": 0
     },
     "env": {
       "browser": true
