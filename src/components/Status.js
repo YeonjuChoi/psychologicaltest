@@ -29,7 +29,7 @@ const Progress = styled.div`
     transition: all 0.2s linear;
 `;
 
-export default function Status({type, percent}) {
+function Status({type, percent}) {
     
 
     return (
@@ -45,4 +45,4 @@ export default function Status({type, percent}) {
     )
 }
 
-export const MemoizedStatus = React.memo(Status)
+export default React.memo(Status)

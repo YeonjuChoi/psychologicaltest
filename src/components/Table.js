@@ -31,7 +31,7 @@ export default function Table( { title, res }) {
             <Title>
                 종사자 평균 {title}별
             </Title>
-            <StyledTable>
+            <StyledTable key={`${title}-table`}>
                 <thead>
                     <tr>
                     {titles.map((item) => (

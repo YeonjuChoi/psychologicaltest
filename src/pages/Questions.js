@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useEffect, useMemo} from 'react';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import { StyledButton } from '../components/Styled';
-import { MemoizedStatus } from '../components/Status'
-import { MemoizedQuestionItem } from '../components/QuestionItem';
+import Status from '../components/Status'
+import QuestionItem from '../components/QuestionItem';
 
 const NavDiv = styled.div`
         display: flex;
@@ -25,7 +25,7 @@ export default function Questions() {
 
     const startNum = 5*(page-1);
     const endNum = 5*page > questionLength ? questionLength : 5*page
-    const loadingList = questions.slice(startNum, endNum);
+    const loadingList = useMemo(()=>questions.slice(startNum, endNum), [questions, startNum, endNum]);
 
     const answer = useSelector((state)=>state.answers);
     const answersCount = Object.keys(answer).length;
@@ -48,10 +48,14 @@ export default function Questions() {
         }
     }
 
+    if (questions.length === 0) {
+        return <Redirect to='/' />
+    }
+
     return (
         <>
-            <MemoizedStatus type='검사 진행' percent={parseInt(answersCount*100/questionLength)} />
-            {loadingList.map((item)=><MemoizedQuestionItem key={`questionBox-${item.qitemNo}`} item={item} inputValue={answer[item.qitemNo]}  />)}
+            <Status type='검사 진행' percent={parseInt(answersCount*100/questionLength)} />
+            <QuestionList loadingList={loadingList} answer={answer} />
             <NavDiv>
                 <StyledButton onClick={onClickPrev} sm status>이전</StyledButton>
                 <StyledButton onClick={onClickNext} sm status={answersCount>=endNum} >다음</StyledButton>
@@ -59,3 +63,6 @@ export default function Questions() {
         </>
     )
 }
+const QuestionList = ({ loadingList, answer }) => loadingList.map((item)=>(
+    <QuestionItem key={`questionBox-${item.qitemNo}`} item={item} inputValue={answer[item.qitemNo]}  />
+))
