@@ -21,6 +21,7 @@ export const QuestionSection = styled.section`
     justify-content: center;
     align-items: center;
     padding: 10px;
+    font-weight: bold;
 `;
 
 export const AnswerSection = styled.section`
@@ -30,6 +31,7 @@ export const AnswerSection = styled.section`
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    font-weight: bold;
 `;
 export const fadeIn = keyframes`
     from {
@@ -58,7 +60,7 @@ export const AnswerOption = styled.div`
     div {
         height: 20px;
         font-size: 0.6rem;
-        line-height: 20px;
+        line-height: 10px;
     }
 `;
 export const StyledRadioInput = styled.input`
@@ -69,7 +71,7 @@ export const StyledRadioInput = styled.input`
         display: inline-block;
         cursor: pointer;
         width: 300px;
-        height: ${props=>props.gender ? '100%':'70px'};
+        height: 70px;
         line-height: ${(props) => (props.gender ? "70px" : "40px")};
         font-weight: bold;
         background-color: white;
@@ -77,11 +79,17 @@ export const StyledRadioInput = styled.input`
         border: 3px solid lightsalmon;
         border-radius: 15px;
         box-sizing: border-box;
+
+        div {
+            display: ${props=>props.gender ? 'none':'block'}
+        }
     }
 
     &:checked + label {
         background-color: lightsalmon;
         color: white;
+        transition: all 0.2s ease;
+
     }
 `;
 
@@ -111,4 +119,5 @@ export const StyledButton = styled.button`
     font-size: 1.2rem;
     margin-top: ${props=> props.sm ? '15px':'30px'};
     cursor: ${props => props.status ? 'pointer': 'inherit'};
+    transition: all 0.4s ease;
 `;

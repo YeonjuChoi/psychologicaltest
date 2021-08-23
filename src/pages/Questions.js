@@ -1,10 +1,10 @@
-import React from 'react';
-import { StyledButton } from '../components/Styled';
+import React, {useEffect} from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import Status from '../components/Status'
-import QuestionItem from '../components/QuestionItem';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
+import { StyledButton } from '../components/Styled';
+import Status from '../components/Status'
+import QuestionItem from '../components/QuestionItem';
 
 const NavDiv = styled.div`
         display: flex;
@@ -14,21 +14,22 @@ const NavDiv = styled.div`
 
 export default function Questions() {
     const { page } = useParams();
-    const questionsObj = useSelector((state)=>state.questions)
-    const questions = questionsObj || {};
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [page])
+    const questions = useSelector((state)=>state.questions)
     const questionLength = questions.length;
     const startNum = 5*(page-1);
     const endNum = 5*page > questionLength ? questionLength : 5*page
     const loadingList = questions.slice(startNum, endNum);
-    const answerObj = useSelector((state)=>state.answers);
-    const answer = answerObj || {};
+    const answer = useSelector((state)=>state.answers);
     const answersCount = Object.keys(answer).length;
     const history = useHistory();
     const onClickPrev = () => {
         if (page==='1'){
             history.push('/sample');
         } else {
-            history.push(`/questions/${parseInt(page)-1}`)
+            history.push(`/questions/${Number(page)-1}`)
         }
     };
     const onClickNext = () => {
@@ -36,11 +37,10 @@ export default function Questions() {
             if (endNum === questionLength) {
                 history.push('/result')
             } else{
-                history.push(`/questions/${parseInt(page)+1}`)
+                history.push(`/questions/${Number(page)+1}`)
             }
         }
     }
-    
 
     return (
         <>
