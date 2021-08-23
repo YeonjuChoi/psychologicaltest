@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import RadioItem from './RadioItem';
-import {
-    QuestionContainer,
-    QuestionSection,
-} from './Styled';
+import { QuestionContainer, QuestionSection } from './Styled';
 
 export default function QuestionItem({ item, isSample = false, inputValue }) {
     const dispatch = useDispatch();
@@ -13,10 +10,20 @@ export default function QuestionItem({ item, isSample = false, inputValue }) {
     const onClick = (e) => {
         dispatch({ type: pageType, id: item.qitemNo, answer: e.target.value });
     };
+
+    useEffect(() => {
+        console.log('[QuestionItem]');
+    });
+
     return (
         <QuestionContainer>
             <QuestionSection>{item.question}</QuestionSection>
-            <RadioItem item={item} onClick={onClick} inputValue={inputValue} question />
+            <RadioItem
+                item={item}
+                onClick={onClick}
+                inputValue={inputValue}
+                question
+            />
         </QuestionContainer>
     );
 }
@@ -35,4 +42,5 @@ QuestionItem.defaultProps = {
     isSample: false,
 };
 
-export const MemoizedQuestionItem = React.memo(QuestionItem)
+export const MemoizedQuestionItem = React.memo(QuestionItem);
+
