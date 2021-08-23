@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AnswerSection, AnswerOption, StyledInput, StyledButton, StyledRadioInput } from '../components/Styled';
+import styled from 'styled-components';
+import { StyledInput, StyledButton } from '../components/Styled';
 import RadioItem from '../components/RadioItem';
 
 export default function Main() {
@@ -32,12 +33,18 @@ export default function Main() {
         <>
             <h1>직업 가치관 검사</h1>
             <div>
-                <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>이름</p>
+                <Title>이름</Title>
                 <StyledInput name='name' type='text' onChange={onChange} value={inputs.name} required />
-                <p style={{fontSize:'1.5rem', color:'salmon', fontWeight:'bold'}}>성별</p>
+                <Title>성별</Title>
                 <RadioItem item={[{name:'gender', score:'100323', answer:'남성', additionalInfo:null},{name:'gender', score:'100324', answer:'여성', additionalInfo:null}]} onClick={onChange} isGender />
             </div>
             <StyledButton status={name!=='' && gender!==''} onClick={handleClick}>제출</StyledButton>
         </>
     )
 }
+
+const Title = styled.p`
+    font-size: 1.5rem;
+    color: salmon;
+    font-weight: bold
+`;

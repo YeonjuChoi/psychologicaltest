@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Title } from './Styled'
 
 export default function Table( { title, res }) {
+    console.log(res)
     const [jobRes, setJobRes] = useState([])
     const mainarr = title==='전공'? majors:edu
     const getRes = () =>{
@@ -18,7 +19,7 @@ export default function Table( { title, res }) {
     }
     useEffect(()=> {
         getRes();
-    },[])
+    },[res])
     const titles = ['분류', '직업']
 
     return (
