@@ -26,6 +26,7 @@ export default function Table( { title, res }) {
         getRes();
     },[res])
 
+
     return (
         <>
             <Title>
@@ -33,7 +34,7 @@ export default function Table( { title, res }) {
             </Title>
             <StyledTable key={`${title}-table`}>
                 <thead key={`thead-${title}`}>
-                    <tr>
+                    <tr key='head-row'>
                     {titles.map((item) => (
                         <td key={`table-data-${item}`} className='types'>
                             {item}
@@ -42,11 +43,11 @@ export default function Table( { title, res }) {
                 </thead>
                 <tbody key={`tbody-${title}`}>                
                     {jobRes !== [] && jobRes.map((jobItem, index)=>(
-                        jobItem.length !== 0 && <tr>
-                            <td key={`type-${jobItem}`} className='types'>
+                        jobItem.length !== 0 && <tr key={`body-row-${mainarr[index]}`}>
+                            <td key={`type-${mainarr[index]}`} className='types'>
                                 {mainarr[index]}
                             </td>
-                            <td key={`${mainarr[index]}-${jobItem}`}>
+                            <td key={`jobs-${mainarr[index]}`}>
                                 {jobItem.map((a,i) => <JobItems key={jobItem[i]}>{a} </JobItems>)}
                             </td>
                         </tr>

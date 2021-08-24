@@ -38,9 +38,9 @@ export default function BarChart({ label, score }) {
     function Chart() {
         return (
             <ChartDiv>
-                {score.map((item)=><ChartStack>
-                    <StackName>{label[Number(item[0])-1]}</StackName>
-                    <ChartBar height={Number(item[1])} />
+                {score.map((item)=><ChartStack key={`stack-${item[0]}`}>
+                    <StackName key={`name-${item[0]}`}>{label[Number(item[0])-1]}</StackName>
+                    <ChartBar key={`bar-${item[0]}`} height={Number(item[1])} />
                 </ChartStack>)}
             </ChartDiv>
         )
