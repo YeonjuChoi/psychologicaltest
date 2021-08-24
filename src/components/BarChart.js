@@ -99,6 +99,7 @@ const StackName = styled.div`
     border-top: 1px solid rgba(250, 128, 114, 0.8);
     text-align: center;
     height: 19px;
-    margin: 0
+    margin: 0;
+    color: salmon
 `;
 

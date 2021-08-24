@@ -65,6 +65,11 @@ export const StyledRadioInput = styled.input`
         border: 3px solid ${salmonColor};
         border-radius: 15px;
         box-sizing: border-box;
+        
+        &:hover {
+            background-color: rgba(250, 128, 114, 0.1);
+            transition: all 0.3s ease
+        }
 
         div {
             display: ${props=>props.gender ? 'none':'block'}
@@ -74,7 +79,6 @@ export const StyledRadioInput = styled.input`
     &:checked + label {
         background-color: ${salmonColor};
         transition: all 0.2s ease;
-
     }
 `;
 

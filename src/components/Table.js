@@ -68,6 +68,7 @@ export const StyledTable = styled.table`
     thead {
         font-weight: bold;
         border-bottom: solid 2px salmon;
+        color: salmon
     }
 
     tr {
@@ -83,6 +84,7 @@ export const StyledTable = styled.table`
         &.types {
         background-color: rgba(250,128,114,0.2);
         border: 2px solid rgba(250, 128, 144, 0.6);
+        color: salmon;
     }
 }`
 
