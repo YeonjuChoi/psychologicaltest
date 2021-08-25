@@ -116,3 +116,9 @@ export const Title = styled.h2`
     font-weight: bold;
     margin-top: 40px;
 `;
+
+export const Alert = styled.p`
+    color: ${deepSalmon};
+    font-size: 0.8rem;
+    font-weight: bold;
+`;
