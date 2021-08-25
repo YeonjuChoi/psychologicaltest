@@ -45,7 +45,7 @@ export const AnswerOption = styled.div`
     
     div {
         height: 20px;
-        font-size: 0.6rem;
+        font-size: 0.5rem;
         line-height: 10px;
     }
 `;
@@ -109,6 +109,7 @@ export const StyledButton = styled.button`
     margin-top: ${props=> props.sm ? '15px':'30px'};
     cursor: ${props => props.status ? 'pointer': 'inherit'};
     transition: all 0.4s ease;
+    font-family: 'Cafe24SsurroundAir'
 `;
 
 export const Title = styled.h2`

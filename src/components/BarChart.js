@@ -95,7 +95,7 @@ const ChartBar = styled.div`
 
 
 const StackName = styled.div`
-    font-size: 0.2rem;
+    font-size: 2vw;
     border-top: 1px solid rgba(250, 128, 114, 0.8);
     text-align: center;
     height: 19px;
