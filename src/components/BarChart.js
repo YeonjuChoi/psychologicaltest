@@ -95,11 +95,11 @@ const ChartBar = styled.div`
 
 
 const StackName = styled.div`
-    font-size: 0.8rem;
+    font-size: 0.2rem;
     border-top: 1px solid rgba(250, 128, 114, 0.8);
     text-align: center;
     height: 19px;
     margin: 0;
-    color: salmon
+    color: salmon;
 `;
 
