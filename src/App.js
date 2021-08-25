@@ -1,5 +1,4 @@
 /* eslint-disable import/order */
-import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Main from './pages/Main';
@@ -13,27 +12,11 @@ import reducer from './redux';
 
 const store = createStore(reducer);
 
-const MainDiv = styled.div`
-  background-color: #fdf6f0;
-  max-width: 700px;
-  min-width: 300px;
-  text-align: center;
-  min-height: 50vh;
-  border-radius: 30px;
-  margin: auto;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
-  color: dimgrey
-`;
-
-
-function App() {
+export default function App() {
   return (
     <Provider store={store}>
-      <div className="App">
+      <WholeDiv>
+        <Space />
         <MainDiv>
           <BrowserRouter>
             <Switch>
@@ -55,9 +38,35 @@ function App() {
             </Switch>
           </BrowserRouter>
         </MainDiv>
-      </div>
+        <Space />
+      </WholeDiv>
     </Provider>
   );
 }
 
-export default App;
+
+const WholeDiv = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const MainDiv = styled.div`
+  background-color: #fdf6f0;
+  max-width: 700px;
+  min-width: 300px;
+  text-align: center;
+  min-height: 50vh;
+  border-radius: 30px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  color: dimgrey
+`;
+
+const Space = styled.div`
+  width: 100%;
+  height: 50px;
+`;
