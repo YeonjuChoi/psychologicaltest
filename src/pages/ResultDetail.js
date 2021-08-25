@@ -65,6 +65,7 @@ export default function ResultDetail() {
     };
 
     const today = new Date();
+    const someday = "2021-08-19T04:18:42.000+0000"
     const dateString = today.toLocaleDateString('ko-KR', {
         year: 'numeric',
         month: 'long',
