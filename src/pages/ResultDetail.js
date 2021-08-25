@@ -32,7 +32,7 @@ export default function ResultDetail() {
 
     useEffect(() => {
         finalResult(resId);
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0);
     }, [resId]);
 
     const finalResult = async (seqId) => {
@@ -90,10 +90,19 @@ export default function ResultDetail() {
                     </tr>
                 </tbody>
             </StyledTable>
+            {/* <Message */}
+            {/*   name={name} */}
+            {/*   bests={[resItems[top2[0]], resItems[top2[1]]]} */}
+
+            {/* /> */}
             <IntroMessage>
-                직업생활 관련하여 {name}님은 {resItems[top2[0]]}, {resItems[top2[1]]}{['1','3','6'].includes(top2[1]) ?'를' : '을'} 가장 중요하게 생각합니다. <br />
-                반면에 {resItems[low2[0]]}, {resItems[low2[1]]}{['1','3','6'].includes(low2[1]) ?'는' : '은'} 상대적으로
-                덜 중요하게 생각합니다.
+                직업생활 관련하여 {name}님은 {resItems[top2[0]]},{' '}
+                {resItems[top2[1]]}
+                {['1', '3', '6'].includes(top2[1]) ? '를' : '을'} 가장 중요하게
+                생각합니다. <br />
+                반면에 {resItems[low2[0]]}, {resItems[low2[1]]}
+                {['1', '3', '6'].includes(low2[1]) ? '는' : '은'} 상대적으로 덜
+                중요하게 생각합니다.
             </IntroMessage>
 
             <div>
@@ -118,3 +127,14 @@ export default function ResultDetail() {
 const IntroMessage = styled.div`
     margin-top: 20px;
 `;
+
+function Message({ name, bests, worsts, isVowel }) {
+    return (
+        <IntroMessage>
+            직업생활 관련하여 {name}님은 {bests[0]}, {bests[1]}
+            {isVowel ? '를' : '을'} 가장 중요하게 생각합니다. <br />
+            반면에 {worsts[0]}, {worsts[1]}
+            {isVowel ? '는' : '은'} 상대적으로 덜 중요하게 생각합니다.
+        </IntroMessage>
+    );
+}

@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 Status.defaultProps = {
     type: '검사 예시',
-    percent: 0
-}
+    percent: 0,
+};
 
 const StatusContainer = styled.div`
-    width: 100%
+    width: 100%;
 `;
 
-
 const TopInfo = styled.div`
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    `;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`;
+
 const StatusBar = styled.div`
     width: 100%;
     height: 30px;
@@ -27,16 +27,14 @@ const StatusBar = styled.div`
 `;
 
 const Progress = styled.div`
-    width: ${props=>`${props.percent}%` || '0%'};
+    width: ${(props) => `${props.percent}%` || '0%'};
     height: 100%;
     background-color: rgba(250, 128, 114, 0.2);
     border-radius: 10px;
     transition: all 0.2s linear;
 `;
 
-function Status({type, percent}) {
-    
-
+function Status({ type, percent }) {
     return (
         <StatusContainer>
             <TopInfo>
@@ -47,7 +45,8 @@ function Status({type, percent}) {
                 <Progress percent={percent} />
             </StatusBar>
         </StatusContainer>
-    )
+    );
 }
 
-export default React.memo(Status)
+export default React.memo(Status);
+

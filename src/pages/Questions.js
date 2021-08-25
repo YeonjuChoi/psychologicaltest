@@ -1,68 +1,89 @@
-import React, { useEffect, useMemo} from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { StyledButton } from '../components/Styled';
-import Status from '../components/Status'
+import Status from '../components/Status';
 import QuestionItem from '../components/QuestionItem';
 
 const NavDiv = styled.div`
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    `;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+`;
 
 export default function Questions() {
     const { page } = useParams();
     const history = useHistory();
 
     useEffect(() => {
-        window.scrollTo(0,0);
-    }, [page])
+        window.scrollTo(0, 0);
+    }, [page]);
 
-    const questions = useSelector((state)=>state.questions)
+    const questions = useSelector((state) => state.questions);
     const questionLength = questions.length;
 
-    const startNum = 5*(page-1);
-    const endNum = 5*page > questionLength ? questionLength : 5*page
-    const loadingList = useMemo(()=>questions.slice(startNum, endNum), [questions, startNum, endNum]);
+    const startNum = 5 * (page - 1);
+    const endNum = 5 * page > questionLength ? questionLength : 5 * page;
+    const loadingList = useMemo(() => questions.slice(startNum, endNum), [
+        questions,
+        startNum,
+        endNum,
+    ]);
 
-    const answer = useSelector((state)=>state.answers);
+    const answer = useSelector((state) => state.answers);
     const answersCount = Object.keys(answer).length;
 
     const onClickPrev = () => {
-        if (page==='1'){
+        if (page === '1') {
             history.push('/sample');
         } else {
-            history.push(`/questions/${Number(page)-1}`)
+            history.push(`/questions/${Number(page) - 1}`);
         }
     };
-    
+
     const onClickNext = () => {
-        if(answersCount >= endNum){
+        if (answersCount >= endNum) {
             if (endNum === questionLength) {
-                history.push('/result')
-            } else{
-                history.push(`/questions/${Number(page)+1}`)
+                history.push('/result');
+            } else {
+                history.push(`/questions/${Number(page) + 1}`);
             }
         }
-    }
+    };
 
     if (questions.length === 0) {
-        return <Redirect to='/' />
+        return <Redirect to="/" />;
     }
 
     return (
         <>
-            <Status type='검사 진행' percent={parseInt(answersCount*100/questionLength)} />
+            <Status
+                type="검사 진행"
+                percent={parseInt((answersCount * 100) / questionLength)}
+            />
             <QuestionList loadingList={loadingList} answer={answer} />
             <NavDiv>
-                <StyledButton onClick={onClickPrev} sm status>이전</StyledButton>
-                <StyledButton onClick={onClickNext} sm status={answersCount>=endNum} >다음</StyledButton>
+                <StyledButton onClick={onClickPrev} sm status>
+                    이전
+                </StyledButton>
+                <StyledButton
+                    onClick={onClickNext}
+                    sm
+                    status={answersCount >= endNum}
+                >
+                    다음
+                </StyledButton>
             </NavDiv>
         </>
-    )
+    );
 }
-const QuestionList = ({ loadingList, answer }) => loadingList.map((item)=>(
-    <QuestionItem key={`questionBox-${item.qitemNo}`} item={item} inputValue={answer[item.qitemNo]}  />
-))
+
+const QuestionList = ({ loadingList, answer }) =>
+    loadingList.map((item) => (
+        <QuestionItem
+            key={`questionBox-${item.qitemNo}`}
+            item={item}
+            inputValue={answer[item.qitemNo]}
+        />
+    ));
