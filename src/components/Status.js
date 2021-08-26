@@ -6,6 +6,11 @@ Status.defaultProps = {
     percent: 0
 }
 
+const StatusContainer = styled.div`
+    width: 100%
+`;
+
+
 const TopInfo = styled.div`
         width: 100%;
         display: flex;
@@ -33,7 +38,7 @@ function Status({type, percent}) {
     
 
     return (
-        <>
+        <StatusContainer>
             <TopInfo>
                 <h2>{type}</h2>
                 <h2>{percent}%</h2>
@@ -41,7 +46,7 @@ function Status({type, percent}) {
             <StatusBar>
                 <Progress percent={percent} />
             </StatusBar>
-        </>
+        </StatusContainer>
     )
 }
 

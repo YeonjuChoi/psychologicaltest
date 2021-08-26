@@ -38,9 +38,9 @@ export default function BarChart({ label, score }) {
     function Chart() {
         return (
             <ChartDiv>
-                {score.map((item)=><ChartStack>
-                    <StackName>{label[Number(item[0])-1]}</StackName>
-                    <ChartBar height={Number(item[1])} />
+                {score.map((item)=><ChartStack key={`stack-${item[0]}`}>
+                    <StackName key={`name-${item[0]}`}>{label[Number(item[0])-1]}</StackName>
+                    <ChartBar key={`bar-${item[0]}`} height={Number(item[1])} />
                 </ChartStack>)}
             </ChartDiv>
         )
@@ -64,9 +64,11 @@ const ChartDiv = styled.div`
 
 const ChartStack = styled.div`
     width: 20%;
-    height: 320px;
+    height: 340px;
     display: flex;
     flex-direction: column-reverse;
+    background: linear-gradient(rgba(250, 128, 114, 0.1) 50%, transparent 0);
+    background-size: 100% 80px;
 `;
 
 const ChangeHeight = keyframes`
@@ -93,9 +95,11 @@ const ChartBar = styled.div`
 
 
 const StackName = styled.div`
-    font-size: 0.8rem;
+    font-size: 2vw;
     border-top: 1px solid rgba(250, 128, 114, 0.8);
-    padding: 5px;
     text-align: center;
+    height: 19px;
+    margin: 0;
+    color: salmon;
 `;
 

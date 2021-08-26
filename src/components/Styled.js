@@ -45,7 +45,7 @@ export const AnswerOption = styled.div`
     
     div {
         height: 20px;
-        font-size: 0.6rem;
+        font-size: 0.5rem;
         line-height: 10px;
     }
 `;
@@ -65,6 +65,11 @@ export const StyledRadioInput = styled.input`
         border: 3px solid ${salmonColor};
         border-radius: 15px;
         box-sizing: border-box;
+        
+        &:hover {
+            background-color: rgba(250, 128, 114, 0.1);
+            transition: all 0.3s ease
+        }
 
         div {
             display: ${props=>props.gender ? 'none':'block'}
@@ -74,7 +79,6 @@ export const StyledRadioInput = styled.input`
     &:checked + label {
         background-color: ${salmonColor};
         transition: all 0.2s ease;
-
     }
 `;
 
@@ -105,10 +109,17 @@ export const StyledButton = styled.button`
     margin-top: ${props=> props.sm ? '15px':'30px'};
     cursor: ${props => props.status ? 'pointer': 'inherit'};
     transition: all 0.4s ease;
+    font-family: 'Cafe24SsurroundAir'
 `;
 
 export const Title = styled.h2`
     color: ${deepSalmon};
     font-weight: bold;
     margin-top: 40px;
+`;
+
+export const Alert = styled.p`
+    color: ${deepSalmon};
+    font-size: 0.8rem;
+    font-weight: bold;
 `;

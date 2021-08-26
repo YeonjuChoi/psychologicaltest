@@ -9,7 +9,7 @@ export default function RadioItem({ item, question, onClick, inputValue=null, is
                 name: `question-${data.qitemNo}`,
                 score: data[`answerScore0${num}`],
                 answer: data[`answer0${num}`],
-                additionalInfo: data[`answer0${2*num}`],
+                additionalInfo: data[`answer0${num+2}`],
             }))
         }
         return data

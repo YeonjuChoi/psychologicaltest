@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# 직업 심리 검사 서비스 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 설명
+[직업심리검사 API](https://www.career.go.kr/cnet/front/openapi/openApiTestCenter.do)를 사용하여 사용자의 직업 적합도를 확인할 수 있는 웹 서비스입니다.
 
-## Available Scripts
+직업 심리 검사 서비스는 사용자의 이름, 나이, 성별을 입력한 후, 직업 심리 검사를 진행하면 나와 성향이 맞는 직업을 추천해주고, 사용자의 직업 가치관과 가장 적합도가 높은 직업을 탐색할 수 있도록 도움을 주는 검사 결과를 보여주는 웹 서비스입니다.
 
-In the project directory, you can run:
+## 기술 스택
+- JavaScript
+- Functional Components + Hooks
+- React
+- react-router-dom
+- axios
+- styled-components
+- redux
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 구현 기능
+### 유저 설정
+- 이름을 입력할 수 있는 input form 구현
+- 성별을 선택할 수 있는 input form 구현
+- 이름 혹은 성별을 기입하지 않거나 선택하지 않을 경우 검사 시작 버튼 비활성화
+- 이름을 올바르게 입력하지 않았을 경우, 안내 메시지 출력
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 검사 예시 페이지
+- 검사 시작 전 앞으로의 진행 방식에 대해 설명하는 페이지 구현
+- 진행 방식에 대한 검사 예제 한 문항을 화면에 표시
+- 검사 예지 문항을 진행하지 않으면 검사 시작 버튼 비활성화
 
-### `yarn test`
+### 검사 진행 페이지
+- 페이지 당 문항이 5개 출력
+- 페이지 내 문항을 모두 진행하기 전까지는 "다음" 버튼이 비활성화 상태
+- 각 문항을 선택할 때마다 진행 표시줄과 퍼센트(%)가 갱신
+- "이전" 버튼을 클릭했을 때 이전 페이지 문항에서 선택한 값이 유지
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 검사 완료 페이지
+- 검사 완료 문구 출력
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 결과표 페이지
+- 유저의 기본 정보 포함
+- 직업 가치관 결과에 대하여 항목 별로 수치를 표기 (막대 그래프 사용)
+- 가치관과 관련이 높은 직업을 결과에 따라 분류
+- "다시 검사하기" 버튼 클릭 시, 진행했던 항목에 대한 기록 모두 초기화
