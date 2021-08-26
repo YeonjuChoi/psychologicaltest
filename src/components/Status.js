@@ -24,12 +24,12 @@ const StatusBar = styled.div`
 const Progress = styled.div`
     width: ${props=>`${props.percent}%` || '0%'};
     height: 100%;
-    background-color: lightsalmon;
+    background-color: rgba(250, 128, 114, 0.2);
     border-radius: 10px;
     transition: all 0.2s linear;
 `;
 
-export default function Status({type, percent}) {
+function Status({type, percent}) {
     
 
     return (
@@ -44,3 +44,5 @@ export default function Status({type, percent}) {
         </>
     )
 }
+
+export default React.memo(Status)

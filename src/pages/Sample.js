@@ -11,8 +11,7 @@ import Status from '../components/Status';
 export default function Sample() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const sampleAnswer = useSelector((state)=>state.sample)
-    const sample = sampleAnswer || {};
+    const sample = useSelector((state)=>state.sample)
     useEffect(()=> {
         fetch();
     });
@@ -22,15 +21,13 @@ export default function Sample() {
         dispatch(actionObject);
     }
     const onClick = () => {
-        if(sampleAnswer[1]!== undefined) {
+        if(sample[1]!== undefined) {
             history.push('/questions/1')
         }
     }
     return (
         <>
-            <div style={{width:'100%'}}>
-                <Status />
-            </div>
+            <Status/>
             <QuestionItem isSample inputValue={sample[1]} />
             <StyledButton status={sample[1]} onClick={onClick}>검사 진행하기</StyledButton>
         </>

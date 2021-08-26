@@ -6,13 +6,14 @@ import {
     QuestionSection,
 } from './Styled';
 
-export default function QuestionItem({ item, isSample = false, inputValue }) {
+function QuestionItem({ item, isSample = false, inputValue }) {
     const dispatch = useDispatch();
 
     const pageType = isSample ? 'SAMPLE_INPUT' : 'ANSWER_INPUTS';
     const onClick = (e) => {
         dispatch({ type: pageType, id: item.qitemNo, answer: e.target.value });
     };
+
     return (
         <QuestionContainer>
             <QuestionSection>{item.question}</QuestionSection>
@@ -34,3 +35,5 @@ QuestionItem.defaultProps = {
     },
     isSample: false,
 };
+
+export default React.memo(QuestionItem)
