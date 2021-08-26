@@ -10,9 +10,8 @@ import useActions from '../hooks/useActions'
 function QuestionItem({ item, isSample = false, inputValue }) {
     const { saveSample, saveAnswer } = useActions();
 
-    const pageType = isSample ? 'sample' : 'question';
     const onClick = (e) => {
-        if (pageType === 'sample') {
+        if (isSample) {
             saveSample(item.qitemNo, e.target.value)
         } else {
             saveAnswer(item.qitemNo, e.target.value)

@@ -9,7 +9,7 @@ export default function BarChart({ label, score }) {
                 {score.map((item)=><ChartStack key={`stack-${item[0]}`}>
                     <StackName key={`name-${item[0]}`}>{label[Number(item[0])-1]}</StackName>
                     <ChartBar key={`bar-${item[0]}`} height={Number(item[1])} />
-                    <StackNum>{item[1]}</StackNum>
+                    <StackNum key={`barNum-${item[0]}`}>{item[1]}</StackNum>
                 </ChartStack>)}
         </ChartDiv>
     )
