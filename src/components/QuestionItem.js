@@ -1,17 +1,22 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import RadioItem from './RadioItem';
 import {
     QuestionContainer,
     QuestionSection,
 } from './Styled';
+import useActions from '../hooks/useActions'
+
 
 function QuestionItem({ item, isSample = false, inputValue }) {
-    const dispatch = useDispatch();
+    const { saveSample, saveAnswer } = useActions();
 
-    const pageType = isSample ? 'SAMPLE_INPUT' : 'ANSWER_INPUTS';
+    const pageType = isSample ? 'sample' : 'question';
     const onClick = (e) => {
-        dispatch({ type: pageType, id: item.qitemNo, answer: e.target.value });
+        if (pageType === 'sample') {
+            saveSample(item.qitemNo, e.target.value)
+        } else {
+            saveAnswer(item.qitemNo, e.target.value)
+        }
     };
 
     return (

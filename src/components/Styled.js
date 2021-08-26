@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-
-const salmonColor = 'rgba(250, 128, 114, 0.2)'
-const deepSalmon = 'rgba(250, 128, 114, 0.8)'
+import colors from '../styles/colors';
+import fonts from '../styles/fonts'
 
 export const QuestionContainer = styled.div`
     background-color: white;
@@ -18,7 +17,7 @@ export const QuestionContainer = styled.div`
 export const QuestionSection = styled.section`
     max-width: 620px;
     min-height: 30px;
-    background-color: ${salmonColor};
+    background-color: ${colors.salmonColor};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,13 +60,13 @@ export const StyledRadioInput = styled.input`
         line-height: ${(props) => (props.gender ? "70px" : "40px")};
         font-weight: bold;
         background-color: white;
-        color: ${deepSalmon};
-        border: 3px solid ${salmonColor};
+        color: ${colors.deepSalmon};
+        border: 3px solid ${colors.salmonColor};
         border-radius: 15px;
         box-sizing: border-box;
         
         &:hover {
-            background-color: rgba(250, 128, 114, 0.1);
+            background-color: ${colors.lightSalmon};
             transition: all 0.3s ease
         }
 
@@ -77,35 +76,33 @@ export const StyledRadioInput = styled.input`
     }
 
     &:checked + label {
-        background-color: ${salmonColor};
+        background-color: ${colors.salmonColor};
         transition: all 0.2s ease;
     }
 `;
 
 
 export const StyledInput = styled.input`
-        border: 3px solid ${salmonColor};
+        border: 3px solid ${colors.salmonColor};
         width: 300px;
         box-sizing: border-box;
         height: 70px;
         border-radius: 15px;
         text-align: center;
-        font-size: 1.2rem;
-        color: ${deepSalmon};
-        font-weight: bold;
-    `;
+        color: ${colors.deepSalmon};
+        ${fonts.fontLarge};
+`;
 
 export const StyledButton = styled.button`
-    background-color: ${props => props.status ? salmonColor:'lightgrey'};
+    background-color: ${props => props.status ? colors.salmonColor:'lightgrey'};
     width: ${props => props.sm ? '100px':'300px'};
     height: ${props => props.sm ? '50px':'70px'};
     border-radius: 15px;
     border: 0px;
     margin-top: 20px;
     box-sizing: border-box;
-    color: ${props=> props.status? deepSalmon: 'white'};
-    font-weight: bold;
-    font-size: 1.2rem;
+    color: ${props=> props.status? colors.deepSalmon: 'white'};
+    ${fonts.fontLarge}
     margin-top: ${props=> props.sm ? '15px':'30px'};
     cursor: ${props => props.status ? 'pointer': 'inherit'};
     transition: all 0.4s ease;
@@ -113,13 +110,12 @@ export const StyledButton = styled.button`
 `;
 
 export const Title = styled.h2`
-    color: ${deepSalmon};
+    color: ${colors.deepSalmon};
     font-weight: bold;
     margin-top: 40px;
 `;
 
 export const Alert = styled.p`
-    color: ${deepSalmon};
-    font-size: 0.8rem;
-    font-weight: bold;
+    color: ${colors.deepSalmon};
+    ${fonts.fontSmallBold}
 `;

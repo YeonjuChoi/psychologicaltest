@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { StyledInput, StyledButton, Title, Alert } from '../components/Styled';
 import RadioItem from '../components/RadioItem';
+import useActions from '../hooks/useActions';
 
 export default function Main() {
     
+    const { setupProfile } = useActions();
+
     const [inputs, setInputs] = useState({
         name: '',
         gender: ''
@@ -21,12 +23,11 @@ export default function Main() {
     };
     const handleClick = () => {
         if (name && gender) {
-            dispatch({type: 'PROFILE_ACTION', name, gender});
+            setupProfile(name, gender)
             history.push('/sample')
         } 
     }
 
-    const dispatch = useDispatch();
     const history = useHistory();
     return (
         <>
