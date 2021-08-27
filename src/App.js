@@ -44,7 +44,6 @@ export default function App() {
   );
 }
 
-
 const WholeDiv = styled.div`
   display: flex;
   align-items: center;
@@ -63,7 +62,7 @@ const MainDiv = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  color: dimgrey
+  color: dimgrey;
 `;
 
 const Space = styled.div`

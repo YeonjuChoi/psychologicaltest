@@ -1,27 +1,28 @@
 import React from 'react';
 import RadioItem from './RadioItem';
-import {
-    QuestionContainer,
-    QuestionSection,
-} from './Styled';
-import useActions from '../hooks/useActions'
-
+import { QuestionContainer, QuestionSection } from './Styled';
+import useActions from '../hooks/useActions';
 
 function QuestionItem({ item, isSample = false, inputValue }) {
     const { saveSample, saveAnswer } = useActions();
 
     const onClick = (e) => {
         if (isSample) {
-            saveSample(item.qitemNo, e.target.value)
+            saveSample(item.qitemNo, e.target.value);
         } else {
-            saveAnswer(item.qitemNo, e.target.value)
+            saveAnswer(item.qitemNo, e.target.value);
         }
     };
 
     return (
         <QuestionContainer>
             <QuestionSection>{item.question}</QuestionSection>
-            <RadioItem item={item} onClick={onClick} inputValue={inputValue} question />
+            <RadioItem
+                item={item}
+                onClick={onClick}
+                inputValue={inputValue}
+                question
+            />
         </QuestionContainer>
     );
 }
@@ -40,4 +41,4 @@ QuestionItem.defaultProps = {
     isSample: false,
 };
 
-export default React.memo(QuestionItem)
+export default React.memo(QuestionItem);
