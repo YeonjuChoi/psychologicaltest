@@ -1,14 +1,16 @@
 body {
-    word-break: keep-all;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cafe24SsurroundAir';
+  word-break: keep-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cafe24SsurroundAir';
 }
 
 @font-face {
-    font-family: 'Cafe24SsurroundAir';
-    src: local('Cafe24SsurroundAir'), url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Cafe24SsurroundAir';
+  src: local('Cafe24SsurroundAir'),
+    url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff')
+      format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

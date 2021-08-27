@@ -33,7 +33,6 @@
     "extends": [
       "react-app",
       "react-app/jest",
-      "airbnb",
       "prettier"
     ],
     "rules": {

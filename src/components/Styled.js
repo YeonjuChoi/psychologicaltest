@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '../styles/colors';
-import fonts from '../styles/fonts'
+import fonts from '../styles/fonts';
 
 export const QuestionContainer = styled.div`
     background-color: white;
@@ -41,7 +41,7 @@ export const AnswerOption = styled.div`
     margin: 5px;
     border-radius: 15px;
     overflow: auto;
-    
+
     div {
         height: 20px;
         font-size: 0.5rem;
@@ -57,21 +57,21 @@ export const StyledRadioInput = styled.input`
         cursor: pointer;
         width: 300px;
         height: 70px;
-        line-height: ${(props) => (props.gender ? "70px" : "40px")};
+        line-height: ${(props) => (props.gender ? '70px' : '40px')};
         font-weight: bold;
         background-color: white;
         color: ${colors.deepSalmon};
         border: 3px solid ${colors.salmonColor};
         border-radius: 15px;
         box-sizing: border-box;
-        
+
         &:hover {
             background-color: ${colors.lightSalmon};
-            transition: all 0.3s ease
+            transition: all 0.3s ease;
         }
 
         div {
-            display: ${props=>props.gender ? 'none':'block'}
+            display: ${(props) => (props.gender ? 'none' : 'block')};
         }
     }
 
@@ -81,32 +81,32 @@ export const StyledRadioInput = styled.input`
     }
 `;
 
-
 export const StyledInput = styled.input`
-        border: 3px solid ${colors.salmonColor};
-        width: 300px;
-        box-sizing: border-box;
-        height: 70px;
-        border-radius: 15px;
-        text-align: center;
-        color: ${colors.deepSalmon};
-        ${fonts.fontLarge};
+    border: 3px solid ${colors.salmonColor};
+    width: 300px;
+    box-sizing: border-box;
+    height: 70px;
+    border-radius: 15px;
+    text-align: center;
+    color: ${colors.deepSalmon};
+    ${fonts.fontLarge};
 `;
 
 export const StyledButton = styled.button`
-    background-color: ${props => props.status ? colors.salmonColor:'lightgrey'};
-    width: ${props => props.sm ? '100px':'300px'};
-    height: ${props => props.sm ? '50px':'70px'};
+    background-color: ${(props) =>
+        props.status ? colors.salmonColor : 'lightgrey'};
+    width: ${(props) => (props.sm ? '100px' : '300px')};
+    height: ${(props) => (props.sm ? '50px' : '70px')};
     border-radius: 15px;
     border: 0px;
     margin-top: 20px;
     box-sizing: border-box;
-    color: ${props=> props.status? colors.deepSalmon: 'white'};
+    color: ${(props) => (props.status ? colors.deepSalmon : 'white')};
     ${fonts.fontLarge}
-    margin-top: ${props=> props.sm ? '15px':'30px'};
-    cursor: ${props => props.status ? 'pointer': 'inherit'};
+    margin-top: ${(props) => (props.sm ? '15px' : '30px')};
+    cursor: ${(props) => (props.status ? 'pointer' : 'inherit')};
     transition: all 0.4s ease;
-    font-family: 'Cafe24SsurroundAir'
+    font-family: 'Cafe24SsurroundAir';
 `;
 
 export const Title = styled.h2`
