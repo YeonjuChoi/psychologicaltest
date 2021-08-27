@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import { StyledButton } from '../components/Styled';
 import QuestionItem from '../components/QuestionItem';
 import Status from '../components/Status';
+import useActions from '../hooks/useActions'
 
 
 
 export default function Sample() {
-    const dispatch = useDispatch();
+    const { setupQuestions } = useActions();
     const history = useHistory();
     const sample = useSelector((state)=>state.sample)
     useEffect(()=> {
@@ -17,8 +18,8 @@ export default function Sample() {
     });
     const fetch = async () => {
         const response = await axios.get('https://www.career.go.kr/inspct/openapi/test/questions?apikey=ca115d14dfa918dd56d9172eb0aac33c&q=6');
-        const actionObject = {type: 'SAVE_QUESTIONS', payload: response.data.RESULT};
-        dispatch(actionObject);
+        
+        setupQuestions(response.data.RESULT)
     }
     const onClick = () => {
         if(sample[1]!== undefined) {

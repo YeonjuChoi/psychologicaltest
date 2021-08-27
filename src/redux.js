@@ -4,7 +4,7 @@ const initialState = {
     questions: [],
     sample: {},
     answers: {},
-    result: '',
+    result: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -37,7 +37,8 @@ export default function reducer(state = initialState, action) {
         case 'RESULT_INPUT': {
             return {
                 ...state,
-                result: action.result,
+                results: {...state.results, 
+                    [action.id]: action.result},
             };
         }
         default:
