@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Title } from './Styled';
+import colors from '../styles/colors'
+
 
 export default function Table( { title, res }) {
     const edu = ['','중졸이하', '고졸', '전문대졸', '대졸', '대학원졸'];
@@ -36,7 +38,7 @@ export default function Table( { title, res }) {
                 종사자 평균 {title}별
             </Title>
             <StyledTable key={`${title}-table`}>
-                <thead key={`thead-${title}`}>
+                <thead>
                     <tr key='head-row'>
                     {titles.map((item) => (
                         <td key={`table-data-${item}`} className='types'>
@@ -44,13 +46,13 @@ export default function Table( { title, res }) {
                         </td>))}
                     </tr>
                 </thead>
-                <tbody key={`tbody-${title}`}>                
+                <tbody>                
                     {jobRes !== [] && Object.keys(jobRes).map((num)=>(
                         <tr key={`body-row-${mainarr[num]}`}>
-                            <td key={`type-${mainarr[num]}`} className='types'>
+                            <td className='types'>
                                 {mainarr[num]}
                             </td>
-                            <td key={`jobs-${jobRes[num]}`}>
+                            <td>
                                 {jobRes[num].map((a,i) => <JobItems key={a}>{a} </JobItems>)}
                             </td>
                         </tr>
@@ -82,12 +84,13 @@ export const StyledTable = styled.table`
     td {
         padding: 15px;
         border-radius: 15px;
-        background-color: rgba(250,128,114,0.1);
+        background-color: ${colors.lightSalmon};
+        line-height: 1.5rem;
 
 
         &.types {
-        background-color: rgba(250,128,114,0.2);
-        border: 2px solid rgba(250, 128, 144, 0.6);
+        background-color: ${colors.salmonColor};
+        border: 2px solid ${colors.deepSalmon};
         color: salmon;
     }
 }`

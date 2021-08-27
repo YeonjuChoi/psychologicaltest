@@ -46,26 +46,25 @@ export default function Result() {
             "grade": "",
             "startDtm": Date.now(),
             "answers": answerString(answers),
+        }).then(async (res) => {
+            const seq = res.data.RESULT.url.split("=")[1];
+            const result = await axios
+                .get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${seq}`)
+                .then((res2) => res2.data.result)
+            const date = result.endDtm;
+            const testRes = result.wonScore.trim().split(' ').map((item)=>item.split("="))
+            return [date, testRes]
         })
 
-        const resId = response.data.RESULT.url.split('=')[1];
-
-        const semiResult = await axios.get(
-            `https://www.career.go.kr/inspct/api/psycho/report?seq=${resId}`,
-        );
-
-        const score = semiResult.data.result.wonScore
-            .slice(0, -1)
-            .split(' ')
-            .map((item) => item.split('='));
-        const testDate = semiResult.data.result.endDtm
+        const testDate = response[0]
+        const score = response[1]
         setResult('testDate', testDate);
         setResult('originalRes', score.slice());
-
+        
         score.sort((a, b) => b[1] - a[1]);
-        const res = score;
-        const res1 = [res[0][0], res[1][0]]
-        const res2 = [res[6][0], res[7][0]]
+
+        const res1 = [score[0][0], score[1][0]]
+        const res2 = [score[6][0], score[7][0]]
         setTop2(res1)
         setLow2(res2)
 
@@ -87,11 +86,13 @@ export default function Result() {
 const Description = styled.div`
     padding: 10px 50px;
     margin: 0;
-    ${fonts.fontLarge}
+    ${fonts.fontLarge};
+    line-height: 1.5rem;
 `;
 
 const InnerMessage = styled.p`
     margin-top: 30px;
+    line-height: 1.5rem;
 `;
 
 export function Message({ name, tops, lows, res }) {
